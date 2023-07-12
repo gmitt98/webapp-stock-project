@@ -11,7 +11,7 @@ today_date = date.today()
 
 data = []  
 
-with open('top_100_company_tickers.csv', 'r') as file:
+with open('../top_100_company_tickers.csv', 'r') as file:
     csv_reader = csv.DictReader(file)
     for row in csv_reader:
         ticker = row['Ticker']
@@ -54,11 +54,11 @@ with open('top_100_company_tickers.csv', 'r') as file:
 
         data.append(my_info)
 
-json_filename = f"stock_data_{today_date}.json"
+json_filename = os.path.join("..", f"data/stock_data_{today_date}.json")
 with open(json_filename, 'w') as json_file:
     json.dump(data, json_file, indent=4)
 
-csv_filename = f"stock_data_{today_date}.csv"
+csv_filename = os.path.join("..",f"data/stock_data_{today_date}.csv")
 with open(csv_filename, 'w', newline='') as csv_file:
     fieldnames = data[0].keys() if data else [] 
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
