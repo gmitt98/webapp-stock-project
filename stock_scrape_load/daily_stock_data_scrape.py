@@ -1,16 +1,20 @@
+import os
+current_directory = os.getcwd()
+file_directory = os.path.dirname(os.path.abspath(__file__))
+os.chdir(file_directory)
+
 import yfinance as yf
 import json
 import csv
 from datetime import date
 today_date = date.today()
 
-data = []  # List to store the data for all tickers
+data = []  
 
 with open('top_100_company_tickers.csv', 'r') as file:
     csv_reader = csv.DictReader(file)
     for row in csv_reader:
         ticker = row['Ticker']
-        # Do something with the ticker value
         print("Processing", ticker)
         my_stock = yf.Ticker(ticker)
 
@@ -48,20 +52,17 @@ with open('top_100_company_tickers.csv', 'r') as file:
             print("Key not found for ticker:", ticker)
             print("Error:", e)
 
-        data.append(my_info)  # Append the data for current ticker to the list
-
-# Save data to a JSON file
+        data.append(my_info)
 
 json_filename = f"stock_data_{today_date}.json"
 with open(json_filename, 'w') as json_file:
     json.dump(data, json_file, indent=4)
 
-# Save data to a CSV file
 csv_filename = f"stock_data_{today_date}.csv"
 with open(csv_filename, 'w', newline='') as csv_file:
-    fieldnames = data[0].keys() if data else []  # Get the fieldnames from the first dictionary in data
+    fieldnames = data[0].keys() if data else [] 
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(data)
     
-print("Data saved successfully!")
+print("Data saved")
