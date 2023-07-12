@@ -47,7 +47,7 @@ function buildStockOne(tickerOne) {
       let labels = result.otu_ids;
       let values = result.sample_values;
       
-      //DO WE WANT BUBBLE OR BAR OR SOMETHING ELSE?
+      //BUILD LINE CHART WITH DAILY PRICE OVER TIME FOR THE LAST WEEK WITH BAR CHART OF VOLUME IMPOSED BEHIND?
       // Build a Bubble Chart
       let bubbleTrace = {
        x: labels,
@@ -77,48 +77,40 @@ function buildStockOne(tickerOne) {
   //INPUT BUILD MAP FUNCTION
   function buildMap() {
 
-    let myMap = L.map("map-container", {
-      center: [45.52, -122.67],
-      zoom: 13
-    });
-    
-    // Adding a tile layer (the background map image) to our map:
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(myMap);
+  
 
   }
 
-  //THIS PART NEEDS TO BE UPDATED
+  //THIS PART IS UPDATED. NEEDS BOTH FUNCTIONS AT END TO BE UNCOMMENTED
   function init() {
     // Get the reference to the dropdown menu
     let selector = d3.select("#selStockOne")
   
-    // Use the list of sample names to populate the select options
-    const url = "URL GOES HERE";
+    // Use the list of tickers to populate the select options
+    const url = "stock_data_2023-07-11.json";
 
     //fetch the JSON data and console log it
     d3.json(url).then((data) => {
       //CHANGE THIS
     // Do this by pulling the array associated with `names` 
-      let idNames = data.names;
+      let dicts = data[0].ticker;
       
       // Loop through the names and append to the dropdown menu
-      for (let i = 0; i < idNames.length; i++){
-        selector.append("option").text(idNames[i]).property("value",idNames[i]);
+      for (let i = 0; i < dicts.length; i++){
+        selector.append("option").text(dicts[i]).property("value",dicts[i]);
       };
   
       // Use the first sample from the list to build the initial plots
-      let firstSample = idNames[0]
-      buildCharts(firstSample)
-      buildMetadata(firstSample)
+      // let firstTicker = tickers[0]
+      // buildChart(firstTicker)
+      // buildMetadata(firstTicker)
     })
     ;
   }
 
   function optionChanged(newTicker) {
-    // Change your data and update your plots/metadata when newSample is selected from the dropdown
-    buildCharts(newTicker);
+    // Change your data and update your plots/metadata when newTicker is selected from the dropdown
+    buildChart(newTicker);
     buildMetadata(newTicker);
   
   };
@@ -135,3 +127,33 @@ function buildStockTwo(tickerTwo) {
 
 
 }
+
+
+
+
+
+
+function init() {
+  // Get the reference to the dropdown menu
+  let selector = d3.select("#selStockOne")
+
+    // Use the list of tickers to populate the select options
+    const url = "https://znjanxz3h6.execute-api.us-west-2.amazonaws.com/default";
+
+    //fetch the JSON data and console log it
+    d3.json(url).then((data) => {
+      let tickers = data.body
+      // Loop through the names and append to the dropdown menu
+      for (let i = 0; i < tickers.length; i++){
+        let ticker = tickers[i][0];
+        console.log(ticker)
+        selector.append("option").text(ticker).property("value",ticker);
+        // <option value="AAPL">AAPL</option>
+      };
+  }
+  
+  )
+}
+
+init();
+
