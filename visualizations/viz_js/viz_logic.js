@@ -16,7 +16,7 @@ function buildStockOne(tickerOne) {
     // Filter the data for the object with the desired ticker
     let metadata = data.metadata;
     //THIS CALL MAY NEED TO CHANGE DEPENDING ON HOW THE DATA IS FORMATTED
-    let filteredArray = metadata.filter(tickerOneObj => tickerOneObj.id == tickerOne);
+    let filteredArray = metadata.filter(tickerOneObj => tickerOneObj.ticker == tickerOne);
     let result = filteredArray[0];
     // Select the panel with ticker of `#stock-one-metadata`
     let panel = d3.select("#stock-one-metadata");
@@ -39,10 +39,10 @@ function buildStockOne(tickerOne) {
     //fetch the JSON data and console log it
     d3.json(url).then((data) => {
       // Filter the data for the object with the desired ticker
-      let tickers = data//TICKER LIST NAME IN JSON GOES HERE;
+      let tickers = data.tickers;
       let filteredTickersArray = tickers.filter(tickerOneObj => tickerOneObj.symbol == tickerOne);
       let result = filteredTickersArray[0]
-      // Pull the desired information (ticker, DECIDE WHAT OTHER INFO TO GRAB) from your filtered data
+      // Pull the desired information (ticker, long name, sector, daily volume, ) from your filtered data
       let ticker = result.symbol;
       let labels = result.otu_ids;
       let values = result.sample_values;
