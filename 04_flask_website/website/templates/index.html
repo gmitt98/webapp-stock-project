@@ -17,7 +17,7 @@
   <h1>Our Project 3</h1>
   
     <ol>
-    <li><a href="{{url_for('static', filename='map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
+    <li><a href="{{url_for('static', filename='map_one/map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
     <li><a href="{{url_for('static', filename='visualizations/viz_index.html')}}">Dashboard</a></li>
   </ol>
  
@@ -26,21 +26,21 @@
 		<button
 		  type="button"
 		  class="btn btn-primary"
-		  onclick="btnName()"
+		  onclick="btnGeojson()"
 		>get new geojson data</button>
   </ol>
   
 
 
 <script>
-	var btnName = function() {
+	var btnGeojson = function() {
+		alert('starting geojson scraper');
 	  $.get('/get_geojson',
 		function(x) {
 		  $("#resBtnHere").html(x);
 		}
 	  )
 	}
-	btnName();
 	
 	function myFunction() {
 		alert("I am an alert box!");
