@@ -15,6 +15,11 @@
 </head>
 <body>
   <h1>Our Project 3</h1>
+  
+    <ol>
+    <li><a href="{{url_for('static', filename='map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
+    <li><a href="{{url_for('static', filename='visualizations/viz_index.html')}}">Dashboard</a></li>
+  </ol>
  
    <ol>
     <li>
@@ -25,10 +30,7 @@
 		>get new geojson data</button>
   </ol>
   
-  <ol>
-    <li><a href="{{url_for('static', filename='map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
-    <li><a href="{{url_for('static', filename='visualizations/viz_index.html')}}">Dashboard</a></li>
-  </ol>
+
 
 <script>
 	var btnName = function() {
