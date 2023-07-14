@@ -155,43 +155,46 @@ function init() {
       // Loop through the names and append to the dropdown menu
       for (let i = 0; i < tickers.length; i++){
         let ticker = tickers[i][0];
-        console.log(ticker)
+        // console.log(ticker)
         selector.append("option").text(ticker).property("value",ticker);
       };
 
-    // Use the first sample from the list to build the initial plots
-    // let firstTicker = tickers[0]
-    // buildChart(firstTicker)
-    // buildMetadata(firstTicker)
-  })
+      // Use the first sample from the list to build the initial plots
+      let firstTicker = tickers[0][0]
+      // buildChart(firstTicker)
+      buildMetadata(firstTicker)
+    })
   ;
 }
 
 init()
 
 
-function buildMetadata() {
+function buildMetadata(tickerOne) {
 
   // Access the website and use d3 to operate on the data
   // read in url
   const url = "./stock_data_2023-07-11.json";
 
   //fetch the JSON data and console log it
- d3.json(url).then((data) => {
-  console.log(data);
+  d3.json(url).then((data) => {
+    // console.log(data);
 
-  // Select the panel with ticker of `#stock-one-metadata`
-  let panel = d3.select("#stock-one-metadata");
+    // Select the panel with ticker of `#stock-one-metadata`
+    let panel = d3.select("#stock-one-metadata");
 
-  // Clear existing metadata - use `.html("")`
-  panel.html("");
-  
-  // grab latest data
-  let result = data[0]
-  // Append new tags for each key-value in the metadata
-  for (key in result){
-    panel.append("h6").text(`${key.toUpperCase()}: ${result[key]}`)
-  };
+    // Clear existing metadata - use `.html("")`
+    panel.html("");
+    
+    // grab the data associated with the selected ticker
+    let results = data.filter((tickerRow) => {
+      return tickerOne == tickerRow.ticker
+    })
+    let result = results[0]
+    // Append new tags for each key-value in the metadata
+    for (key in result){
+      panel.append("h6").text(`${key.toUpperCase()}: ${result[key]}`)
+    };
   });
 };
 
