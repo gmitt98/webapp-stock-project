@@ -61,7 +61,11 @@ class MC_Scraper:
                     address=[info[x] for x in fields]
                 except:
                     print('\n-'*10+'>no address found for %s'%ticker)
-            self.dd[co]['address']=address
+            try:
+                self.dd[co]['address']=address
+                print('got address for %s'%co)
+            except:
+                continue
             #get lat and lon
             latlon=self.get_latlon(address)
             if latlon:
@@ -125,5 +129,6 @@ if __name__=='__main__':
     mc.get_additional_data()
 ##    mc.print_dd()
 ##    mc.save_to_csv('top_100_company_tickers.csv')
-    mc.save_to_json('../leaflet/data.geojson')
+##    mc.save_to_json('../leaflet/data.geojson')
+    mc.save_to_json('data.geojson')
     
