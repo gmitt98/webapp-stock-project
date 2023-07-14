@@ -48,6 +48,8 @@ with open('../top_100_company_tickers.csv', 'r') as file:
             my_info["quickRatio"] = my_stock.info["quickRatio"]
             my_info["10DayAverageVolume"] = my_stock.info["averageDailyVolume10Day"]
             my_info["marketCap"] = my_stock.info["marketCap"]
+            my_info["dayHigh"] = my_stock.info["dayHigh"]
+            my_info["dayLow"] = my_stock.info["dayLow"]
         except KeyError as e:
             print("Key not found for ticker:", ticker)
             print("Error:", e)
