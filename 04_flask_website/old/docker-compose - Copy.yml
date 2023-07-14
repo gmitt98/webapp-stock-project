@@ -9,6 +9,9 @@ services:
         --access-logfile -
         --reload
         "website.app:create_app()"
+    environment:
+      PYTHONUNBUFFERED: 'true'
+      - "EXTERNAL_IP=${EXTERNAL_IP}"
     volumes:
       - '.:/website'
     ports:

@@ -7,16 +7,44 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Our Project 3</title>
 
+  <!-- jquery -->
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <h1>Our Project 3</h1>
+ 
+   <ol>
+    <li>
+		<button
+		  type="button"
+		  class="btn btn-primary"
+		  onclick="btnName()"
+		>get new geojson data</button>
+  </ol>
   
   <ol>
     <li><a href="{{url_for('static', filename='map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
     <li><a href="{{url_for('static', filename='visualizations/viz_index.html')}}">Dashboard</a></li>
   </ol>
+
+<script>
+	var btnName = function() {
+	  $.get('/get_geojson',
+		function(x) {
+		  $("#resBtnHere").html(x);
+		}
+	  )
+	}
+	btnName();
+	
+	function myFunction() {
+		alert("I am an alert box!");
+	}
+	
+</script>
 </body>
 
 </html>
