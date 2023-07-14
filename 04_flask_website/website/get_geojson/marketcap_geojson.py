@@ -40,9 +40,6 @@ class MC_Scraper:
             ticker=co
             info=self.get_info(ticker)
             if not info: continue
-##            tickerobj=yf.Ticker(ticker)
-##            info=tickerobj.info
-##            print(info)
             #get quick ratio
             try:
                 self.dd[co]['quick_ratio']=info['quickRatio']
