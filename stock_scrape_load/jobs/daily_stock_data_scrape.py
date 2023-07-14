@@ -32,7 +32,9 @@ with open('../top_100_company_tickers.csv', 'r') as file:
             "dailyVolume": None,
             "quickRatio": None,
             "10DayAverageVolume": None,
-            "marketCap": None
+            "marketCap": None,
+            "dayHigh" : None,
+            "dayLow" : None,
         }
 
         try:
