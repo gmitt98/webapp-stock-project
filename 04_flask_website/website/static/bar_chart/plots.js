@@ -1,35 +1,40 @@
-function build_plot(){
-  console.log('building the plot...');
-  let fpth="./data.geojson";
-  let xData=[];
-  let yData=[];
-  d3.json(fpth).then(function(data) {
-    for (let i=0;i<data.length;i++){
-      //console.log(data[i]);
-      xData.push(data[i]['name']);
-      yData.push(data[i]['market_cap']);
-      //let qr=data[i]['quick_ratio'];
-    }
-  });
+let names=[]
+let market_cap=[]
+let colors=[]
 
-  let trace1 = {
-    x: xData,
-    y: yData
-  };
-
-  let data = [trace1];
-  let layout = {
-    title: "Top 100 US Corporations by Market Capitalization"
-  };
-  
-  Plotly.newPlot("plot", data, layout);
-
+for (let i = 0; i < searchResults.length; i++) {
+  row = searchResults[i];
+  names.push(row.name);
+  market_cap.push(row.market_cap);
+  colors.push(row.color);
 }
 
-build_plot();
+let trace1 = {
+  x: names,
+  y: market_cap,
+  marker:{color:colors},
+  text: names,
+  type: "bar"
+};
 
+// Create data array
+let data = [trace1];
 
+// Apply a title to the layout
+let layout = {
+  title: "Top 100 US Corporations by Market Capitalization",
+  //barmode: "group",
+  // Include margins in the layout so the x-tick labels display correctly
+  margin: {
+    l: 50,
+    r: 50,
+    b: 200,
+    t: 50,
+    pad: 4
+  }
+};
 
+console.log(colors);
 
-
-
+// Render the plot to the div tag with id "plot"
+Plotly.newPlot("plot", data, layout);

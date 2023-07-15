@@ -17,8 +17,11 @@
   <h1>Our Project 3</h1>
   
     <ol>
-    <li><a href="{{url_for('static', filename='map_one/map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
-    <li><a href="{{url_for('static', filename='visualizations/viz_index.html')}}">Dashboard</a></li>
+    <li><a  target="_blank" href="{{url_for('static', filename='map_one/map.html')}}">Leaflet map showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
+
+    <li><a  target="_blank" href="{{url_for('static', filename='bar_chart/bar_chart.html')}}">Bar chart showing top 100 US corporations by market capitalization (colors indicate quick ratios)</a></li>
+
+    <li><a  target="_blank" href="{{url_for('static', filename='visualizations/viz_index.html')}}">Dashboard</a></li>
   </ol>
  
    <ol>
@@ -26,24 +29,38 @@
 		<button
 		  type="button"
 		  class="btn btn-primary"
-		  onclick="btnGeojson()"
-		>get new geojson data</button>
+		  onclick="btnGeojsonMap()"
+		>get new geojson data for map</button>
+	</li>
+
+	 <li>
+		<button
+		  type="button"
+		  class="btn btn-primary"
+		  onclick="btnGeojsonBar()"
+		>get new geojson data for bar chart</button>
+	</li>
   </ol>
   
 
 
 <script>
-	var btnGeojson = function() {
+	var btnGeojsonMap = function() {
 		alert('starting geojson scraper');
-	  $.get('/get_geojson',
+	  $.get('/get_geojson_for_map',
 		function(x) {
-		  $("#resBtnHere").html(x);
+		  $("#resBtnHere1").html(x);
 		}
 	  )
 	}
 	
-	function myFunction() {
-		alert("I am an alert box!");
+	var btnGeojsonBar = function() {
+		alert('starting geojson scraper');
+	  $.get('/get_geojson_for_bar',
+		function(x) {
+		  $("#resBtnHere2").html(x);
+		}
+	  )
 	}
 	
 </script>
