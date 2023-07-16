@@ -7,6 +7,12 @@ We wanted to create a dashboard where the user could compare two stock tickers t
 ## Objectives ##
 
 ### Webscapers and Database
+The data for this project were pulled from Yahoo Finance, as mentioned above, with the yfinance module in Python running locally. Additional data were pulled from https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/ in order to get the list of companies that we were working with. All of these data were loaded into a MySQL database on AWS. We used AWS Lambda services, written in Python, and triggered with a AWS APIGateway API, to make these data available via an open API. The database itself, while hosted on AWS, is managed locally with MySQLWorkbench.
+The folder "stock_scrape_load" contains the code and the data associated with the daily data pulls. The subfolder "jobs" contains the python code, the subfolder "data" contains the daily output data as well as the SQL dumps files that were used to upload this to the RDS MySQL database. There was an attempt to write another script to load the data automatically but it was not debugged in time. We also saved the historical company stock data in csv and JSON formats for easy local development.
+The Lambda code is in the main folder. The files are:
+* company_addresses_lambda.py
+* top_100_tickers_query_lambda.py
+* stock_data_lambda.py -- this one works but the API Gateway API is having CORS issues that we could not fully resolve. A screenshot shows it working from local machine.
 
 ### Flask App Deployment
 
