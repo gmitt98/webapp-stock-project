@@ -10,79 +10,42 @@ function init(){
 	//add_legend(myMap);
 }
   
-function normalize(val, max, min) { 
-    if(max - min === 0) return 0; // or 0, it's up to you
-	let res=Math.abs((val-1500)/3000);
-	res=Math.trunc(res*16777215);
-	res=res.toString(16);
-	return res;
-}
+// function normalize(val, max, min) { 
+//     if(max - min === 0) return 0; // or 0, it's up to you
+// 	let res=Math.abs((val-1500)/3000);
+// 	res=Math.trunc(res*16777215);
+// 	res=res.toString(16);
+// 	return res;
+// }
 
-function theradius(r){
-	r=r**0.35;
-	if(r<1.00) r=1.00;
-	return r;
-}
-
-function color_info(depth){
-	depth=(depth*50);
-	if(depth<10)
-		return ["red","<10"];
-	else if(depth<30)
-		return ["orangered","10-30"];
-	else if(depth<50)
-		return ["orange","30-50"];
-	else if(depth<70)
-		return ["gold","50-70"];
-	else if(depth<90)
-		return ["yellow","70-90"];
-	else {
-		return ["green",">90"];
-	}
-}
-
-function color_info_old(depth){
-	depth=(depth*50);
-	if(depth<10)
-		return ["lawngreen","<10"];
-	else if(depth<30)
-		return ["greenyellow","10-30"];
-	else if(depth<50)
-		return ["gold","30-50"];
-	else if(depth<70)
-		return ["orange","50-70"];
-	else if(depth<90)
-		return ["orangered","70-90"];
-	else {
-		return ["red",">90"];
-	}
-}
+// function theradius(r){
+// 	r=r**0.35;
+// 	if(r<1.00) r=1.00;
+// 	return r;
+// }
 
 function add_markers(myMap){
 	console.log('adding markers...');
-	let fpth="./data.geojson";
-	d3.json(fpth).then(function(data) {
-		for (let i=0;i<data.length;i++){
-			console.log(data[i]);
-			let lon=data[i]['lon'];
-			let lat=data[i]['lat'];
-			let qr=data[i]['quick_ratio'];
-			let color=color_info(qr);
-			let radius=theradius(data[i]['market_cap']);
-			let name=data[i]['name'];
-			tooltip="name: "+name;
-			let address=data[i]['address'];
-			tooltip=tooltip+" location: "+address;
-			tooltip=tooltip+" quick ratio: "+qr;
-			let circle = L.circle([lat,lon], {
-				color: color[0],
-				stroke: true,
-				fillOpacity: 0.3,
-				radius: radius,
-			}).bindTooltip(tooltip).addTo(myMap);
-		}
-		//createFeatures(data);
-	});	
+	for (let i = 0; i < searchResults.length; i++) {
+		let data=searchResults;
+		console.log(data[i]);
+		let lon=data[i]['lon'];
+		let lat=data[i]['lat'];
+		let qr=data[i]['quick_ratio'];
+		let color=data[i]['color'];
+		let radius=data[i]['radius'];
+		let name=data[i]['name'];
+		tooltip="name: "+name;
+		let address=data[i]['address'];
+		tooltip=tooltip+" location: "+address;
+		tooltip=tooltip+" quick ratio: "+qr;
+		let circle = L.circle([lat,lon], {
+			color: color,
+			stroke: true,
+			fillOpacity: 0.3,
+			radius: radius,
+		}).bindTooltip(tooltip).addTo(myMap);
+	};
 }
 
 function add_legend(myMap){

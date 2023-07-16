@@ -5,18 +5,17 @@ import yfinance as yf
 import geopy
 import time
 import json
-import sys
 MAX=None
 
 class MC_Scraper:
     def __init__(self,target_url):
-        print('initializing...',file=sys.stderr)
+        print('initializing...')
         self.target_url=target_url
         self.locator=geopy.Nominatim(user_agent='myGeocoder')
         self.dd={}
 
     def get_data(self):
-        print('getting data...',file=sys.stderr)
+        print('getting data...')
         response=requests.get(self.target_url)
         soup=BeautifulSoup(response.content, "html.parser")
         tds=soup.find_all("td")
@@ -32,11 +31,11 @@ class MC_Scraper:
                 pass
 
     def get_additional_data(self):
-        print('getting additional data...',file=sys.stderr)
+        print('getting additional data...')
         cos=sorted(self.dd.keys())
         for i,co in enumerate(cos):
             if MAX and i>MAX: break
-            print('.',end='',file=sys.stderr)
+            print('.',end='')
             time.sleep(1)
             ticker=co
             info=self.get_info(ticker)
@@ -50,7 +49,7 @@ class MC_Scraper:
             try:
                 self.dd[co]['market_cap']=info['marketCap']
             except:
-                print('no market cap for: %s'%co,file=sys.stderr)
+                print('no market cap for: %s'%co)
 ##                self.dd[co]['market_cap']=0.00
             #get address
             try:
@@ -61,7 +60,7 @@ class MC_Scraper:
                     fields=['city','state','zip','country']
                     address=[info[x] for x in fields]
                 except:
-                    print('\n-'*10+'>no address found for %s'%ticker,file=sys.stderr)
+                    print('\n-'*10+'>no address found for %s'%ticker)
             try:
                 self.dd[co]['address']=address
                 print('got address for %s'%co)
@@ -72,26 +71,16 @@ class MC_Scraper:
             if latlon:
                 self.dd[co]['lat'],self.dd[co]['lon']=latlon
             else:
-                print('\n-'*10+'>'+'no latlon found for %s'%co,file=sys.stderr)
+                print('\n-'*10+'>'+'no latlon found for %s'%co)
             #fix address
             self.dd[co]['address']=', '.join(self.dd[co]['address'])
-            #get color
-            self.dd[co]['color']=self.get_color(self.dd[co]['quick_ratio'])
-            #get radius
-            self.dd[co]['radius']=self.get_radius(self.dd[co]['market_cap'])
-
-    def get_radius(self,mc):
-        con=0.75
-        r=mc**0.35
-        if(r<con):  r=con
-        return r
 
     def get_info(self,ticker):
         try:
             tickerobj=yf.Ticker(ticker)
             info=tickerobj.info
         except:
-            print('\nThere is a problem retrieving information for ticker {ticker}.\nTherefore, ticker {ticker} is being deleted.'.format(ticker=ticker),file=sys.stderr)
+            print('\nThere is a problem retrieving information for ticker {ticker}.\nTherefore, ticker {ticker} is being deleted.'.format(ticker=ticker))
             del self.dd[ticker]
             return None
         return info
@@ -120,42 +109,10 @@ class MC_Scraper:
         for d in sorted(self.dd):
             print(d,self.dd[d])
 
-    # function color_info(depth){
-    # depth=(depth*50);
-    # if(depth<10)
-    #     return ["red","<10"];
-    # else if(depth<30)
-    #     return ["orangered","10-30"];
-    # else if(depth<50)
-    #     return ["orange","30-50"];
-    # else if(depth<70)
-    #     return ["gold","50-70"];
-    # else if(depth<90)
-    #     return ["yellow","70-90"];
-    # else {
-    #     return ["green",">90"];
-    #     }
-    # }
-
-    def get_color(self,qr):
-        qr=qr*50
-        if qr<10:
-            return 'red'
-        elif qr<30:
-            return 'orangered'
-        elif qr<50:
-            return 'orange'
-        elif qr<70:
-            return 'gold'
-        elif qr<90:
-            return 'yellow'
-        else:
-            return 'green'
-
     def save_to_json(self,fpth):
         print('\nsaving to file: %s...'%fpth)
         with open(fpth, 'w', newline='\n') as fobj:
-            fobj.write('let searchResults=[')
+            fobj.write('[')
             for i,co in enumerate(sorted(self.dd)):
                 if i==0:
                     fobj.write('\n')
@@ -164,12 +121,6 @@ class MC_Scraper:
                 json.dump(self.dd[co],fobj)
             fobj.write('\n]')
 
-    def save_files(self):
-        l=['../static/map_one/data.geojson','../static/bar_chart/data.geojson']
-        for fpth in l:
-            try:
-                self.save_to_json(fpth)
-            except: pass
 
 if __name__=='__main__':
     url = "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap"
@@ -179,8 +130,5 @@ if __name__=='__main__':
 ##    mc.print_dd()
 ##    mc.save_to_csv('top_100_company_tickers.csv')
 ##    mc.save_to_json('../leaflet/data.geojson')
-##    mc.save_to_json('../static/map_one/data.geojson')
-##    mc.save_to_json('../static/bar_chart/data.geojson')
-    mc.save_files()
-    
+    mc.save_to_json('data.geojson')
     

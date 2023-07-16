@@ -29,36 +29,17 @@
 		<button
 		  type="button"
 		  class="btn btn-primary"
-		  onclick="btnGeojsonMap()"
-		>get new geojson data for map</button>
-	</li>
-
-	 <li>
-		<button
-		  type="button"
-		  class="btn btn-primary"
-		  onclick="btnGeojsonBar()"
-		>get new geojson data for bar chart</button>
-	</li>
-  </ol>
-  
+		  onclick="btnGeojson()"
+		>get new geojson data</button>
+	</li>  
 
 
 <script>
-	var btnGeojsonMap = function() {
+	var btnGeojson = function() {
 		alert('starting geojson scraper');
-	  $.get('/get_geojson_for_map',
+	  $.get('/get_geojson',
 		function(x) {
 		  $("#resBtnHere1").html(x);
-		}
-	  )
-	}
-	
-	var btnGeojsonBar = function() {
-		alert('starting geojson scraper');
-	  $.get('/get_geojson_for_bar',
-		function(x) {
-		  $("#resBtnHere2").html(x);
 		}
 	  )
 	}
