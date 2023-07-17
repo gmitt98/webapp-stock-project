@@ -1,14 +1,14 @@
 //Copied structure from previous assignment, found here https://github.com/m-janssens-boop/belly_button_challenge.git
 //placeholder code that will be changed later to fit actual project needs
 
-const ohlcUrl = "https://raw.githubusercontent.com/gmitt98/webapp-stock-project/main/visualizations/historical.json?token=GHSAT0AAAAAACAU5CILMVPHV4HQSF2MCDXKZFURAQA";
-const url = "https://raw.githubusercontent.com/gmitt98/webapp-stock-project/main/visualizations/stock_data_2023-07-11.json?token=GHSAT0AAAAAACAU5CILSJF7ZIXCDV4FNZRIZFURB3Q";
+// const ohlcUrl = "https://raw.githubusercontent.com/gmitt98/webapp-stock-project/main/visualizations/historical.json?token=GHSAT0AAAAAACAU5CILMVPHV4HQSF2MCDXKZFURAQA";
+// const url = "https://raw.githubusercontent.com/gmitt98/webapp-stock-project/main/visualizations/stock_data_2023-07-11.json?token=GHSAT0AAAAAACAU5CILSJF7ZIXCDV4FNZRIZFURB3Q";
 
   function buildMetadata(ticker, metadata_id) {
 
     // Access the website and use d3 to operate on the data
     // read in url
-    // const url = "./stock_data_2023-07-11.json";
+    const url = "./stock_data_2023-07-11.json";
   
     //fetch the JSON data and console log it
     d3.json(url).then((data) => {
@@ -36,7 +36,7 @@ const url = "https://raw.githubusercontent.com/gmitt98/webapp-stock-project/main
 function buildChart(ticker, gauge_id) {
   // Access the website and use .then to operate on the data
       // read in url
-  // const url = "./stock_data_2023-07-11.json"; 
+  const url = "./stock_data_2023-07-11.json"; 
 
   //fetch the JSON data and console log it
   d3.json(url).then((data) => {
@@ -106,6 +106,8 @@ function buildChart(ticker, gauge_id) {
 };
 
 // Build/play with a fetch function??
+const ohlcUrl = "./historical.json"; 
+
 function fetchData(url) {
   return fetch(url)
     .then(response => response.json())
