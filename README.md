@@ -33,10 +33,15 @@ This dahsboard has two dropdown menus, from which the user selects two different
   - 10 day average volume
   - marketcap
 - #### OHLC (open high low close) chart
+<img width="267" alt="Screenshot 2023-07-17 at 11 38 09 AM" src="https://github.com/gmitt98/webapp-stock-project/assets/127706155/0ab9fb2e-8514-4545-bf32-ec74450c5529">
+
 - #### Gauge Chart comparing:
   - previous close
   - 52 week high/low
   - delta being the difference between previous close and 52 week low
 <img width="439" alt="Screenshot 2023-07-14 at 4 55 06 PM" src="https://github.com/gmitt98/webapp-stock-project/assets/127706155/2d8b0d10-cda9-49ed-8453-76a5b477f7ab">
+
+The whole dashboard together looks like:
+<img width="787" alt="Screenshot 2023-07-17 at 11 33 34 AM" src="https://github.com/gmitt98/webapp-stock-project/assets/127706155/24634ead-bea2-4d34-8cbb-e15560f5910d">
 
 ### Interactive Map
