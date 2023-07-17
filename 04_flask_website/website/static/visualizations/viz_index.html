@@ -1,4 +1,4 @@
-<!Copied structure from previous assignment, found here https://github.com/m-janssens-boop/belly_button_challenge.git>
+<!-- <!Copied structure from previous assignment, found here https://github.com/m-janssens-boop/belly_button_challenge.git> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,17 +10,22 @@
   <title>Project 3</title>
   <!-- Not local CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin="" />
   <!-- Our local CSS -->
   <link rel="stylesheet" type="text/css" href="viz_css/viz_style.css"> 
-
   <!-- D3 JavaScript -->
   <script src="https://d3js.org/d3.v7.min.js" charset="utf-8"></script>
   <!-- Plotly JS -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
   <!-- Leaflet JS -->
-  <script src="./leaflet/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+<!-- JS file -->
   
 </head>
 
@@ -37,12 +42,12 @@
       <div class="col-md-2">
         <div class="well">
           <h5>Stock Ticker 1:</h5>
-          <select id="selStockOne" onchange="optionChanged(this.value, '#stock-one-metadata', 'gauge-1')">
+          <select id="selStockOne" onchange="optionChanged(this.value, '#stock-one-metadata', 'gauge-1', 'ohlc-1')">
           </select>
         </div>
         <div class="well">
           <h5>Stock Ticker 2:</h5>
-          <select id="selStockTwo" onchange="optionChanged(this.value, '#stock-two-metadata', 'gauge-2')"></select>
+          <select id="selStockTwo" onchange="optionChanged(this.value, '#stock-two-metadata', 'gauge-2','ohlc-2')"></select>
         </div>
         <!--ref for panel groupings: https://www.w3schools.com/bootstrap/bootstrap_panels.asp-->
         <div class="panel-group">
@@ -64,8 +69,8 @@
       <div class = "flex-container-1">
         <div class="col-md-5">
           <!-- The div that holds stock graph 1 -->
-          <div id="stock-1"></div>
-          Flex Column 1
+          <div id="ohlc-1"></div>
+          Historical Prices 1
         </div>
         <div class="col-md-5">
           <!-- The div that holds stock 1 gauge graph -->
@@ -74,8 +79,8 @@
 
         <div class="col-md-5">
           <!-- The div that holds stock graph 2 -->
-          <div id="stock-2"></div>
-          Flex Column 2
+          <div id="ohlc-2"></div>
+          Historical Prices 2
       </div>
       <div class="col-md-5">
         <!-- The div that holds stock 2 gauge graph -->
@@ -86,9 +91,8 @@
     </div>
   </div>
 </div>
+  <script src="viz_js/viz_logic.js"></script>
 
-
-
-<script src="viz_js/viz_logic.js"></script>
 </body>
+
 </html>
