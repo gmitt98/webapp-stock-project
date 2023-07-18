@@ -39,6 +39,6 @@ This dahsboard has two dropdown menus, from which the user selects two different
   - 52 week high/low
   - delta being the difference between previous close and 52 week low
 
-<img width="787" alt="Screenshot 2023-07-17 at 11 33 34 AM" src="https://github.com/gmitt98/webapp-stock-project/assets/127706155/24634ead-bea2-4d34-8cbb-e15560f5910d">
+<img width="782" alt="Screenshot 2023-07-17 at 8 55 23 PM" src="https://github.com/gmitt98/webapp-stock-project/assets/127706155/33aa8a6f-d03e-4458-b308-fe91287f8aba">
 
 ### Interactive Map
