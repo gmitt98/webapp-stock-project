@@ -8,7 +8,7 @@
 
     // Access the website and use d3 to operate on the data
     // read in url
-    const url = "./stock_data_2023-07-11.json";
+    const url = "./stock_data_2023-07-17.json";
   
     //fetch the JSON data and console log it
     d3.json(url).then((data) => {
@@ -36,7 +36,7 @@
 function buildChart(ticker, gauge_id) {
   // Access the website and use .then to operate on the data
       // read in url
-  const url = "./stock_data_2023-07-11.json"; 
+  const url = "./stock_data_2023-07-17.json"; 
 
   //fetch the JSON data and console log it
   d3.json(url).then((data) => {
