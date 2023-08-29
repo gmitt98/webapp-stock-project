@@ -15,8 +15,7 @@ The Lambda code is in the main folder. The files are:
 * stock_data_lambda.py -- this one works but the API Gateway API is having CORS issues that we could not fully resolve. A screenshot shows it working from local machine.
 
 ### Flask App Deployment
-The dashboard is accessed through an app powered by docker. 
-![image_720-3](https://github.com/gmitt98/webapp-stock-project/assets/127706155/cf1061b1-2694-41c9-b8f3-c09a257b6b2c)
+The dashboard is accessed through an app powered by docker.
 
 
 ### Visualization Dashboard
