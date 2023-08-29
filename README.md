@@ -15,9 +15,16 @@ The Lambda code is in the main folder. The files are:
 * stock_data_lambda.py -- this one works but the API Gateway API is having CORS issues that we could not fully resolve. A screenshot shows it working from local machine.
 
 ### Flask App Deployment
+The dashboard is accessed through an app powered by docker. 
+![image_720-3](https://github.com/gmitt98/webapp-stock-project/assets/127706155/cf1061b1-2694-41c9-b8f3-c09a257b6b2c)
+
 
 ### Visualization Dashboard
 This dahsboard has two dropdown menus, from which the user selects two different stocks to comapre. The comparisions include:
+
+![image_720](https://github.com/gmitt98/webapp-stock-project/assets/127706155/8326e771-72cc-45a0-a314-c46d252da7f8)
+
+
 - #### Information about each stock:
   - the ticker
   - date of information
@@ -33,12 +40,14 @@ This dahsboard has two dropdown menus, from which the user selects two different
   - 10 day average volume
   - marketcap
 - #### OHLC (open high low close) chart
+![screenshot_2023-07-16_at_5 32 45_pm_360](https://github.com/gmitt98/webapp-stock-project/assets/127706155/09fdd051-576e-4a29-bc32-d609d6e40606)
 
 - #### Gauge Chart comparing:
   - previous close
   - 52 week high/low
   - delta being the difference between previous close and 52 week low
-
-<img width="782" alt="Screenshot 2023-07-17 at 8 55 23 PM" src="https://github.com/gmitt98/webapp-stock-project/assets/127706155/33aa8a6f-d03e-4458-b308-fe91287f8aba">
+![screenshot_2023-07-13_at_9 05 16_pm_720](https://github.com/gmitt98/webapp-stock-project/assets/127706155/d333921e-ae48-4aa5-93a2-215362e6f35a)
 
 ### Interactive Map
+![image_720-1](https://github.com/gmitt98/webapp-stock-project/assets/127706155/e8bacb3c-80fd-4bb6-a9cb-cd77e0f69e98)
+
